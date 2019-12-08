@@ -32,18 +32,24 @@ class CreateV1Tables extends Migration
 
         Schema::create('project-tag', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('tag_id')->unsigned();
-            $table->foreign('tag_id')->references('id')->on('tag');
-            $table->integer('project_id')->unsigned();
-            $table->foreign('project_id')->references('id')->on('project');
+            $table->bigInteger('tags_id')->unsigned();
+            $table->bigInteger('project_id')->unsigned();
+        });
+
+        Schema::table('project-tag', function (Blueprint $table) {
+            $table->foreign('tags_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('project')->onDelete('cascade');
         });
 
         Schema::create('project-photo', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('photo_id')->unsigned();
-            $table->foreign('photo_id')->references('id')->on('photo');
-            $table->integer('project_id')->unsigned();
-            $table->foreign('project_id')->references('id')->on('project');
+            $table->bigInteger('photo_id')->unsigned();
+            $table->bigInteger('project_id')->unsigned();
+        });
+
+        Schema::table('project-photo', function (Blueprint $table) {
+            $table->foreign('photo_id')->references('id')->on('photo')->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('project')->onDelete('cascade');
         });
     }
 

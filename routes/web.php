@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('tag/{id}', 'TagsController@show');
+Route::get('tags', 'TagsController@index');

@@ -11,9 +11,13 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('tag/{id}', 'TagsController@show');
 Route::get('tags', 'TagsController@index');
+Route::post('tags/add', 'TagsController@add');
+

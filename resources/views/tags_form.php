@@ -1,8 +1,9 @@
 <?php
+
 use App\Tags;
-use Collective\Html\FormBuilder;
+
 ?>
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -71,29 +72,14 @@ use Collective\Html\FormBuilder;
 <div class="flex-center position-ref full-height">
     <div class="content">
         <div class="title m-b-md">
-            Теги
+            Добавить теги
         </div>
-
-        <div class="links">
-            <?php
-            /** @var Tags $tags */
-            foreach ($tags as $tag) {
-                echo $tag->title;
-            }
-            ?>
-        </div>
-        <div class="links">
-            <?php
-            $tag = new Tags();
-            //echo Form::model($tag, ['route' => ['tags/add','request' => $tag]]);
-            //echo Form::model($tag, array('route' => array('tags/add', $tag)));
-            //echo Form::submit('Добавить');
-            echo Form::open(array('url' => 'tags/add'));
-            echo Form::text('title', 'тег');
-            echo Form::submit('Добавить');
-            echo Form::close();
-            ?>
-        </div>
+        <?php
+        echo Form::open(array('url' => 'tags/add'));
+        echo Form::text('title', 'тег');
+        echo Form::submit('Добавить');
+        echo Form::close();
+        ?>
     </div>
 </div>
 </body>

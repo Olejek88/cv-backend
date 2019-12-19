@@ -18,7 +18,7 @@ class CreateV1Tables extends Migration
             $table->string('title');
         });
 
-        Schema::create('photo', function (Blueprint $table) {
+        Schema::create('photos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('path');
@@ -30,26 +30,26 @@ class CreateV1Tables extends Migration
             $table->text('description');
         });
 
-        Schema::create('project-tag', function (Blueprint $table) {
+        Schema::create('projects_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('tags_id')->unsigned();
-            $table->bigInteger('project_id')->unsigned();
+            $table->bigInteger('projects_id')->unsigned();
         });
 
-        Schema::table('project-tag', function (Blueprint $table) {
+        Schema::table('projects_tags', function (Blueprint $table) {
             $table->foreign('tags_id')->references('id')->on('tags')->onDelete('cascade');
-            $table->foreign('project_id')->references('id')->on('project')->onDelete('cascade');
+            $table->foreign('projects_id')->references('id')->on('project')->onDelete('cascade');
         });
 
-        Schema::create('project-photo', function (Blueprint $table) {
+        Schema::create('projects_photos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('photo_id')->unsigned();
-            $table->bigInteger('project_id')->unsigned();
+            $table->bigInteger('photos_id')->unsigned();
+            $table->bigInteger('projects_id')->unsigned();
         });
 
-        Schema::table('project-photo', function (Blueprint $table) {
-            $table->foreign('photo_id')->references('id')->on('photo')->onDelete('cascade');
-            $table->foreign('project_id')->references('id')->on('project')->onDelete('cascade');
+        Schema::table('projects_photos', function (Blueprint $table) {
+            $table->foreign('photos_id')->references('id')->on('photo')->onDelete('cascade');
+            $table->foreign('projects_id')->references('id')->on('project')->onDelete('cascade');
         });
     }
 

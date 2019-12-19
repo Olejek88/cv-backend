@@ -9,4 +9,8 @@ class Projects extends Model
     protected $table = 'project';
     public $timestamps = false;
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class);
+    }
 }

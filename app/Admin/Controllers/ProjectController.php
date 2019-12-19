@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Photos;
 use App\Projects;
 use App\Tags;
 use Encore\Admin\Controllers\AdminController;
@@ -29,7 +30,7 @@ class ProjectController extends AdminController
         $grid->column('id', __('ID'))->sortable();
         $grid->column('title')->sortable();
         $grid->column('description');
-
+        $grid->column('tags');
         return $grid;
     }
 
@@ -57,7 +58,10 @@ class ProjectController extends AdminController
     {
         $form = new Form(new Projects);
         $form->text('title', 'Название')->rules('required|max:255');
-        $form->text('description', 'Описание')->rules('required|min:100');
+        $form->text('description', 'Описание')->rules('required|min:10');
+        $form->multipleSelect('tags')->options(Tags::all()->pluck('title', 'id'));
+        //$form->multipleImage('photos')->options(Photos::all()->pluck('title', 'id'));
+        $form->multipleImage('photos');
         return $form;
     }
 }

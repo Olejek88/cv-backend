@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Admin\Controllers;
 
 use App\Tags;
+use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
@@ -10,35 +11,13 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class TagsController extends Controller
+class TagsController extends AdminController
 {
-    /**
-     * Show the profile for the given user.
-     *
-     * @param int $id
-     * @return View
-     */
-    public function show($id)
-    {
-        return view('tag', ['tag' => Tags::findOrFail($id)]);
-    }
-
-    /**
-     * Показать список всех доступных тегов
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        $tags = Tags::all();
-        return view('tags', ['tags' => $tags]);
-    }
 
     /**
      * Добавть тег
      *
      * @param Request $request
-     * @return Response
      */
     public function add(Request $request)
     {
@@ -48,7 +27,6 @@ class TagsController extends Controller
             $tag = new Tags();
             $tag->title = $request->title;
             $tag->save();
-            return self::index();
         }
     }
 

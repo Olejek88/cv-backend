@@ -1,5 +1,5 @@
 <?php
-use App\Tags;
+use App\Tag;
 use Collective\Html\FormBuilder;
 ?>
         <!DOCTYPE html>
@@ -76,7 +76,7 @@ use Collective\Html\FormBuilder;
 
         <div class="links">
             <?php
-            /** @var Tags $tags */
+            /** @var Tag $tags */
             foreach ($tags as $tag) {
                 echo $tag->title;
             }
@@ -84,7 +84,7 @@ use Collective\Html\FormBuilder;
         </div>
         <div class="links">
             <?php
-            $tag = new Tags();
+            $tag = new Tag();
             //echo Form::model($tag, ['route' => ['tags/add','request' => $tag]]);
             //echo Form::model($tag, array('route' => array('tags/add', $tag)));
             //echo Form::submit('Добавить');

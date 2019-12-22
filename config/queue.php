@@ -43,7 +43,7 @@ return [
 
         'beanstalkd' => [
             'driver' => 'beanstalkd',
-            'host' => 'localhost',
+            'host' => 'svc.shtrm88.ru',
             'queue' => 'default',
             'retry_after' => 90,
             'block_for' => 0,

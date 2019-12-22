@@ -13,15 +13,15 @@ class CreateV1Tables extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('tag', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
         });
 
-        Schema::create('photos', function (Blueprint $table) {
+        Schema::create('photo', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->string('path');
+            $table->text('path');
         });
 
         Schema::create('project', function (Blueprint $table) {
@@ -30,26 +30,26 @@ class CreateV1Tables extends Migration
             $table->text('description');
         });
 
-        Schema::create('projects_tags', function (Blueprint $table) {
+        Schema::create('project_tag', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('tags_id')->unsigned();
-            $table->bigInteger('projects_id')->unsigned();
+            $table->bigInteger('tag_id')->unsigned();
+            $table->bigInteger('project_id')->unsigned();
         });
 
-        Schema::table('projects_tags', function (Blueprint $table) {
-            $table->foreign('tags_id')->references('id')->on('tags')->onDelete('cascade');
-            $table->foreign('projects_id')->references('id')->on('project')->onDelete('cascade');
+        Schema::table('project_tag', function (Blueprint $table) {
+            $table->foreign('tag_id')->references('id')->on('tag')->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('project')->onDelete('cascade');
         });
 
-        Schema::create('projects_photos', function (Blueprint $table) {
+        Schema::create('project_photo', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('photos_id')->unsigned();
-            $table->bigInteger('projects_id')->unsigned();
+            $table->bigInteger('photo_id')->unsigned();
+            $table->bigInteger('project_id')->unsigned();
         });
 
-        Schema::table('projects_photos', function (Blueprint $table) {
-            $table->foreign('photos_id')->references('id')->on('photo')->onDelete('cascade');
-            $table->foreign('projects_id')->references('id')->on('project')->onDelete('cascade');
+        Schema::table('project_photo', function (Blueprint $table) {
+            $table->foreign('photo_id')->references('id')->on('photo')->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('project')->onDelete('cascade');
         });
     }
 
@@ -62,7 +62,7 @@ class CreateV1Tables extends Migration
     {
         Schema::dropIfExists('project-tag');
         Schema::dropIfExists('project-photo');
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('tag');
         Schema::dropIfExists('photo');
         Schema::dropIfExists('project');
     }

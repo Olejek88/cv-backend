@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('tag/{id}', 'TagsController@show');
-Route::get('tags', 'TagsController@index');
-Route::post('tags/add', 'TagsController@add');
+Route::get('tag/{id}', 'TagController@show');
+Route::get('tag', 'TagController@index');
+Route::post('tag/add', 'TagController@add');
 

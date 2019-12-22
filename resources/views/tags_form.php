@@ -1,6 +1,6 @@
 <?php
 
-use App\Tags;
+use App\Tag;
 
 ?>
 <!DOCTYPE html>

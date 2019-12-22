@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Tags;
+use App\Tag;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -21,8 +21,8 @@ class TagsController extends AdminController
     {
         // выполнять код, если есть POST-запрос
         if ($request->isMethod('post')) {
-            /** @var Tags $tag */
-            $tag = new Tags();
+            /** @var Tag $tag */
+            $tag = new Tag();
             $tag->title = $request->title;
             $tag->save();
         }
@@ -35,7 +35,7 @@ class TagsController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new Tags());
+        $grid = new Grid(new Tag());
 
         $grid->column('id', __('ID'))->sortable();
         $grid->column('title')->sortable();
@@ -51,7 +51,7 @@ class TagsController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(Tags::findOrFail($id));
+        $show = new Show(Tag::findOrFail($id));
 
         $show->field('id', __('ID'));
         $show->field('title');
@@ -66,8 +66,8 @@ class TagsController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new Tags());
-        $form->display('title');
+        $form = new Form(new Tag());
+        $form->text('title', 'Название')->rules('required|max:255');
         return $form;
     }
 }

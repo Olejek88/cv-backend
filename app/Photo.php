@@ -4,6 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string path
+ * @property mixed project_id
+ * @property string title
+ * @method static findOrFail(int $id)
+ */
 class Photo extends Model
 {
     protected $table = 'photo';

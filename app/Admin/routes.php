@@ -1,6 +1,9 @@
 <?php
 
+use App\Admin\Controllers\ProjectController;
+use App\Admin\Controllers\TagsController;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 
 Admin::routes();
 

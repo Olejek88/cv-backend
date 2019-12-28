@@ -85,7 +85,6 @@ class ProjectController extends AdminController
         $form->text('description', 'Описание')->rules('required|min:10');
         $form->multipleSelect('tags')->options(Tag::all()->pluck('title', 'id'));
         $form->image('photos');
-        //->thumbnail('small', $width = 300, $height = 300)
         return $form;
     }
 }

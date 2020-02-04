@@ -21,3 +21,7 @@ Route::get('tag/{id}', 'TagController@show');
 Route::get('tag', 'TagController@index');
 Route::post('tag/add', 'TagController@add');
 
+Route::get('projects', 'ProjectController@index');
+Route::get('tags', 'TagsController@index');
+Route::get('tags/create', 'TagsController@create');
+

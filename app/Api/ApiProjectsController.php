@@ -4,7 +4,6 @@ namespace App\Api;
 
 use App\Http\Controllers\Controller;
 use App\Project;
-use App\Tag;
 use Illuminate\Http\Response;
 
 class ApiProjectsController extends Controller
@@ -15,7 +14,7 @@ class ApiProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::with('tags')->get();
         return response()->json($projects);
     }
 
@@ -26,7 +25,23 @@ class ApiProjectsController extends Controller
      */
     public function show($id)
     {
-        $project = Project::findOrFail($id);
+        $project = Project::with('tags')->where('id', $id)->get();
         return response()->json($project);
     }
+
+    /**
+     * Вернуть теги проекта по ид
+     * @param int $id
+     * @return Response
+     */
+    public function tags($id)
+    {
+        $tags = [];
+        $project = Project::find($id);
+        if ($project) {
+            $tags = $project->tags;
+        }
+        return response()->json($tags);
+    }
+
 }

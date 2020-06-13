@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property mixed id
  * @method static findOrFail(int $id)
+ * @method static find(int $id)
  */
 class Project extends Model
 {

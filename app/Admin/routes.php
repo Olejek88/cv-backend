@@ -1,7 +1,5 @@
 <?php
 
-use App\Admin\Controllers\ProjectController;
-use App\Admin\Controllers\TagsController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
@@ -12,8 +10,10 @@ Route::group([
     'namespace' => config('admin.route.namespace'),
     'middleware' => config('admin.route.middleware'),
 ], function (Router $router) {
-
     $router->get('/', 'HomeController@index')->name('admin.home');
+    //$router->get('/projects', 'ProjectController@index')->name('admin.projects');
+    //$router->get('/tags', 'TagsController@index')->name('admin.tags');
     $router->resource('tags', TagsController::class);
     $router->resource('projects', ProjectController::class);
+    $router->resource('photo', PhotoController::class);
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Project;
 use App\Tag;
 use Encore\Admin\Controllers\AdminController;
@@ -53,6 +54,7 @@ class ProjectController extends AdminController
         $grid->column('title')->sortable();
         $grid->column('description');
         $grid->column('tags');
+        $grid->column('categories');
         //$grid->column('photos')->image();
         $grid->column('photos')->image('http://svc.shtrm88.ru/uploads', 100, 100);
         return $grid;
@@ -84,6 +86,7 @@ class ProjectController extends AdminController
         $form->text('title', 'Название')->rules('required|max:255');
         $form->text('description', 'Описание')->rules('required|min:10');
         $form->multipleSelect('tags')->options(Tag::all()->pluck('title', 'id'));
+        $form->multipleSelect('categories')->options(Category::all()->pluck('title', 'id'));
         $form->image('photos');
         return $form;
     }

@@ -16,4 +16,5 @@ Route::group([
     $router->resource('tags', TagsController::class);
     $router->resource('projects', ProjectController::class);
     $router->resource('photo', PhotoController::class);
+    $router->resource('categories', CategoriesController::class);
 });

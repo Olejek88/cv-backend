@@ -28,6 +28,7 @@ class CreateV1Tables extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
+            $table->text('photo')->default(null);
         });
 
         Schema::create('project_tag', function (Blueprint $table) {

@@ -14,7 +14,7 @@ class ApiProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::with('tags')->get();
+        $projects = Project::with(['tags', 'categories', 'photos'])->get();
         return response()->json($projects);
     }
 
@@ -25,7 +25,7 @@ class ApiProjectsController extends Controller
      */
     public function show($id)
     {
-        $project = Project::with('tags')->where('id', $id)->get();
+        $project = Project::with(['tags', 'categories', 'photos'])->where('id', $id)->first();
         return response()->json($project);
     }
 

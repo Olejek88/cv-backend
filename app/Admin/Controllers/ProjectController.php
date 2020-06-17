@@ -55,8 +55,8 @@ class ProjectController extends AdminController
         $grid->column('description');
         $grid->column('tags');
         $grid->column('categories');
-        //$grid->column('photos')->image();
-        $grid->column('photos')->image('http://svc.shtrm88.ru/uploads', 100, 100);
+        $grid->column('photo')->image('http://svc.shtrm88.ru/uploads', 100, 100);
+        $grid->column('years');
         return $grid;
     }
 
@@ -72,6 +72,7 @@ class ProjectController extends AdminController
         $show->field('id', __('ID'));
         $show->field('title');
         $show->field('description');
+        $show->field('years');
         return $show;
     }
 
@@ -87,7 +88,9 @@ class ProjectController extends AdminController
         $form->text('description', 'Описание')->rules('required|min:10');
         $form->multipleSelect('tags')->options(Tag::all()->pluck('title', 'id'));
         $form->multipleSelect('categories')->options(Category::all()->pluck('title', 'id'));
-        $form->image('photos');
+        $form->text('years');
+        $form->image('photo')->thumbnail('small', $width = 300, $height = 300);
+        $form->multipleFile('photos', 'Fotos')->pathColumn('path')->removable();
         return $form;
     }
 }

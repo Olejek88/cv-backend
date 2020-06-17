@@ -24,25 +24,25 @@ class Project extends Model
         return $this->belongsToMany('App\Category');
     }
 
-    /*    public function photos()
-        {
-            return $this->hasMany('App\Photo');
-        }*/
-
-    public function setPhotosAttribute($photos)
+    public function photos()
     {
-        $this->attributes['photos'] = json_encode($photos);
+        return $this->hasMany('App\Photo');
+    }
+
+    public function setPhotoAttribute($photo)
+    {
+        $this->attributes['photo'] = json_encode($photo);
         /** @var Photo $file */
         $file = new Photo();
-        $file->path = '/public' . json_encode($photos);
+        $file->path = '/public' . json_encode($photo);
         $file->project_id = $this->id;
         $file->title = 'изображение к проекту';
         $file->save();
 
     }
 
-    public function getPhotosAttribute($photos)
+    public function getPhotoAttribute($photo)
     {
-        return json_decode($photos, true);
+        return json_decode($photo, true);
     }
 }

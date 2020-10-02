@@ -39,7 +39,8 @@ class CategoriesController extends AdminController
 
         $grid->column('id', __('ID'))->sortable();
         $grid->column('title')->sortable();
-
+        $grid->column('title_en')->sortable();
+        $grid->column('title_de')->sortable();
         return $grid;
     }
 
@@ -55,7 +56,8 @@ class CategoriesController extends AdminController
 
         $show->field('id', __('ID'));
         $show->field('title');
-
+        $show->field('title_en');
+        $show->field('title_de');
         return $show;
     }
 
@@ -68,6 +70,8 @@ class CategoriesController extends AdminController
     {
         $form = new Form(new Category());
         $form->text('title', 'Название')->rules('required|max:255');
+        $form->text('title_en', 'Название (en)')->rules('required|max:255');
+        $form->text('title_de', 'Название (de)')->rules('required|max:255');
         return $form;
     }
 }

@@ -54,6 +54,11 @@ class ProjectController extends AdminController
         $grid->column('title')->sortable();
         $grid->column('description');
         $grid->column('tags');
+        $grid->column('git');
+        $grid->column('link');
+        $grid->column('stack');
+        $grid->column('role');
+        $grid->column('usage');
         $grid->column('categories');
         $grid->column('photo')->image('http://svc.shtrm88.ru/uploads', 100, 100);
         $grid->column('years');
@@ -71,8 +76,17 @@ class ProjectController extends AdminController
         $show = new Show(Project::findOrFail($id));
         $show->field('id', __('ID'));
         $show->field('title');
+        $show->field('title_en');
+        $show->field('title_de');
         $show->field('description');
+        $show->field('description_en');
+        $show->field('description_de');
         $show->field('years');
+        $show->field('git');
+        $show->field('link');
+        $show->field('stack');
+        $show->field('role');
+        $show->field('usage');
         return $show;
     }
 
@@ -85,7 +99,16 @@ class ProjectController extends AdminController
     {
         $form = new Form(new Project);
         $form->text('title', 'Название')->rules('required|max:255');
+        $form->text('title_en', 'Название (en)')->rules('required|max:255');
+        $form->text('title_de', 'Название (de)')->rules('required|max:255');
         $form->text('description', 'Описание')->rules('required|min:10');
+        $form->text('description_en', 'Описание (en)')->rules('required|min:10');
+        $form->text('description_de', 'Описание (de)')->rules('required|min:10');
+        $form->text('git', 'Git');
+        $form->text('link', 'Ссылка');
+        $form->text('stack', 'Стек')->rules('required|min:3');
+        $form->text('role', 'Роль')->rules('required|min:5');
+        $form->text('usage', 'Использование');
         $form->multipleSelect('tags')->options(Tag::all()->pluck('title', 'id'));
         $form->multipleSelect('categories')->options(Category::all()->pluck('title', 'id'));
         $form->text('years');

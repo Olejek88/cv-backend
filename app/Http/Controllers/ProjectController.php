@@ -55,6 +55,12 @@ class ProjectController extends AdminController
         $grid->column('description');
         $grid->column('tags');
         $grid->column('categories');
+        $grid->column('git');
+        $grid->column('link');
+        $grid->column('stack');
+        $grid->column('role');
+        $grid->column('usage');
+        $grid->column('categories');
         //$grid->column('photos')->image();
         $grid->column('photo')->image('http://svc.shtrm88.ru/uploads', 100, 100);
         return $grid;
@@ -72,6 +78,11 @@ class ProjectController extends AdminController
         $show->field('id', __('ID'));
         $show->field('title');
         $show->field('description');
+        $show->field('git');
+        $show->field('link');
+        $show->field('stack');
+        $show->field('role');
+        $show->field('usage');
         return $show;
     }
 
@@ -85,6 +96,11 @@ class ProjectController extends AdminController
         $form = new Form(new Project);
         $form->text('title', 'Название')->rules('required|max:255');
         $form->text('description', 'Описание')->rules('required|min:10');
+        $form->text('git', 'Git');
+        $form->text('link', 'Ссылка');
+        $form->text('stack', 'Стек')->rules('required|min:3');
+        $form->text('role', 'Роль')->rules('required|min:5');
+        $form->text('usage', 'Использование');
         $form->multipleSelect('tags')->options(Tag::all()->pluck('title', 'id'));
         $form->multipleSelect('categories')->options(Category::all()->pluck('title', 'id'));
         $form->image('photo')->thumbnail('small', $width = 300, $height = 300);

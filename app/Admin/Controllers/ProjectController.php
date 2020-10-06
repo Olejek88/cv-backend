@@ -50,16 +50,24 @@ class ProjectController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Project);
+        $grid->model()->orderBy('id', 'desc');
         $grid->column('id', __('ID'))->sortable();
         $grid->column('title')->sortable();
-        $grid->column('description');
-        $grid->column('tags');
+        $grid->column('tags')->display(function ($tags) {
+            if (isset($tags) && count($tags)) {
+                return $tags[0]['title'];
+            }
+        });
         $grid->column('git');
         $grid->column('link');
         $grid->column('stack');
         $grid->column('role');
         $grid->column('usage');
-        $grid->column('categories');
+        $grid->column('categories')->display(function ($categories) {
+            if (isset($categories) && count($categories)) {
+                return $categories[0]['title'];
+            }
+        });
         $grid->column('photo')->image('http://svc.shtrm88.ru/uploads', 100, 100);
         $grid->column('years');
         return $grid;
@@ -101,9 +109,9 @@ class ProjectController extends AdminController
         $form->text('title', 'Название')->rules('required|max:255');
         $form->text('title_en', 'Название (en)')->rules('required|max:255');
         $form->text('title_de', 'Название (de)')->rules('required|max:255');
-        $form->text('description', 'Описание')->rules('required|min:10');
-        $form->text('description_en', 'Описание (en)')->rules('required|min:10');
-        $form->text('description_de', 'Описание (de)')->rules('required|min:10');
+        $form->textarea('description', 'Описание')->rules('required|min:10')->rows(10);
+        $form->textarea('description_en', 'Описание (en)')->rules('required|min:10')->rows(10);
+        $form->textarea('description_de', 'Описание (de)')->rules('required|min:10')->rows(10);
         $form->text('git', 'Git');
         $form->text('link', 'Ссылка');
         $form->text('stack', 'Стек')->rules('required|min:3');
@@ -113,7 +121,7 @@ class ProjectController extends AdminController
         $form->multipleSelect('categories')->options(Category::all()->pluck('title', 'id'));
         $form->text('years');
         $form->image('photo')->thumbnail('small', $width = 300, $height = 300);
-        $form->multipleFile('photos', 'Fotos')->pathColumn('path')->removable();
+        $form->multipleFile('photos', 'Фотографии')->pathColumn('path')->removable();
         return $form;
     }
 }

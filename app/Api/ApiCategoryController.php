@@ -4,6 +4,7 @@ namespace App\Api;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Project;
 use Illuminate\Http\Response;
 
 class ApiCategoryController extends Controller
@@ -25,8 +26,7 @@ class ApiCategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Category::all()->where('id', $id)->first();
         return response()->json($category);
     }
-
 }

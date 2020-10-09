@@ -19,8 +19,9 @@ Route::get('projects/{id}/tags', array('uses' => '\App\Api\ApiProjectsController
 Route::get('photos', array('uses' => '\App\Api\ApiPhotosController@index'));
 Route::get('tags/{id}', array('uses' => '\App\Api\ApiTagsController@show'));
 Route::get('photos/{id}', array('uses' => '\App\Api\ApiPhotosController@show'));
-Route::get('projects/{id}', array('uses' => '\App\Api\ApiProjectsController@show'));
+Route::get('projects/category/{id}', array('uses' => '\App\Api\ApiProjectsController@category'));
 Route::get('categories', array('uses' => '\App\Api\ApiCategoryController@index'));
+Route::get('categories/{id}', array('uses' => '\App\Api\ApiCategoryController@show'));
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

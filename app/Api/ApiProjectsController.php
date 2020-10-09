@@ -30,6 +30,20 @@ class ApiProjectsController extends Controller
     }
 
     /**
+     * Send all projects selected category
+     * @param $id
+     * @return Response
+     */
+    public function category($id)
+    {
+        $projects = Project::with(['tags', 'categories', 'photos'])
+            ->whereHas('categories', function ($q) use ($id) {
+                $q->where('category.id', $id);
+            })->get();
+        return response()->json($projects);
+    }
+
+    /**
      * Вернуть теги проекта по ид
      * @param int $id
      * @return Response

@@ -23,6 +23,8 @@ Route::post('tag/add', 'TagController@add');
 
 Route::get('projects', 'ProjectController@index');
 
+Route::get('cv', 'CvController@index');
+
 Route::get('category', 'CategoryController@index');
 Route::post('category/add', 'CategoryController@add');
 

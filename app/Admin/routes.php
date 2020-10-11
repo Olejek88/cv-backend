@@ -17,4 +17,5 @@ Route::group([
     $router->resource('projects', ProjectController::class);
     $router->resource('photo', PhotoController::class);
     $router->resource('categories', CategoriesController::class);
+    $router->resource('cv', CvController::class);
 });

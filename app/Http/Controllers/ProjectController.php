@@ -103,7 +103,7 @@ class ProjectController extends AdminController
         $form->text('usage', 'Использование');
         $form->multipleSelect('tags')->options(Tag::all()->pluck('title', 'id'));
         $form->multipleSelect('categories')->options(Category::all()->pluck('title', 'id'));
-        $form->image('photo')->thumbnail('small', $width = 300, $height = 300);
+        $form->image('photo')->thumbnail('small', $width = 200, $height = 200);
         $form->multipleFile('photos', 'Fotos')->pathColumn('path')->removable();
         return $form;
     }

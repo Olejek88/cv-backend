@@ -20,8 +20,11 @@ Route::get('photos', array('uses' => '\App\Api\ApiPhotosController@index'));
 Route::get('tags/{id}', array('uses' => '\App\Api\ApiTagsController@show'));
 Route::get('photos/{id}', array('uses' => '\App\Api\ApiPhotosController@show'));
 Route::get('projects/category/{id}', array('uses' => '\App\Api\ApiProjectsController@category'));
+Route::get('projects/{id}', array('uses' => '\App\Api\ApiProjectsController@show'));
 Route::get('categories', array('uses' => '\App\Api\ApiCategoryController@index'));
 Route::get('categories/{id}', array('uses' => '\App\Api\ApiCategoryController@show'));
+Route::get('cv', array('uses' => '\App\Api\ApiCvController@index'));
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

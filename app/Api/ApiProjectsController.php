@@ -14,7 +14,7 @@ class ApiProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::with(['tags', 'categories', 'photos'])->get();
+        $projects = Project::with(['tags', 'categories', 'photos'])->orderBy('created_at', 'desc')->get();
         return response()->json($projects);
     }
 
@@ -39,7 +39,7 @@ class ApiProjectsController extends Controller
         $projects = Project::with(['tags', 'categories', 'photos'])
             ->whereHas('categories', function ($q) use ($id) {
                 $q->where('category.id', $id);
-            })->get();
+            })->orderBy('created_at', 'desc')->get();
         return response()->json($projects);
     }
 

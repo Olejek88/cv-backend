@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Cv;
+use App\Career;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -10,14 +10,14 @@ use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use Illuminate\Http\Response;
 
-class CvController extends AdminController
+class CareerController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'App\Cv';
+    protected $title = 'App\Career';
 
     public function create(Content $content)
     {
@@ -46,9 +46,10 @@ class CvController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new Cv);
+        $grid = new Grid(new Career());
         $grid->model()->orderBy('id', 'desc');
         $grid->column('id', __('ID'))->sortable();
+        $grid->column('year')->sortable();
         $grid->column('title')->sortable();
         $grid->column('image')->image('http://svc.shtrm88.ru/uploads', 76, 76);
         return $grid;
@@ -62,8 +63,9 @@ class CvController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(Cv::findOrFail($id));
+        $show = new Show(Career::findOrFail($id));
         $show->field('id', __('ID'));
+        $show->field('year');
         $show->field('title');
         $show->field('title_en');
         $show->field('title_de');
@@ -80,7 +82,8 @@ class CvController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new Cv);
+        $form = new Form(new Career());
+        $form->text('year');
         $form->text('title', 'Название')->rules('required|max:255');
         $form->text('title_en', 'Название (en)')->rules('required|max:255');
         $form->text('title_de', 'Название (de)')->rules('required|max:255');

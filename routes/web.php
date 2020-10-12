@@ -25,6 +25,8 @@ Route::get('projects', 'ProjectController@index');
 
 Route::get('cv', 'CvController@index');
 
+Route::get('career', 'CareerController@index');
+
 Route::get('category', 'CategoryController@index');
 Route::post('category/add', 'CategoryController@add');
 

@@ -38,7 +38,6 @@ class ProjectController extends AdminController
      */
     public function update($id)
     {
-        //return phpinfo();
         return parent::update($id);
     }
 
@@ -104,7 +103,7 @@ class ProjectController extends AdminController
         $form->multipleSelect('tags')->options(Tag::all()->pluck('title', 'id'));
         $form->multipleSelect('categories')->options(Category::all()->pluck('title', 'id'));
         $form->image('photo')->thumbnail('small', $width = 200, $height = 200);
-        $form->multipleFile('photos', 'Fotos')->pathColumn('path')->removable();
+        $form->multipleFile('photos', 'Images')->pathColumn('path')->removable();
         return $form;
     }
 }

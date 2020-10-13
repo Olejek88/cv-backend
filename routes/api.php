@@ -23,8 +23,9 @@ Route::get('projects/category/{id}', array('uses' => '\App\Api\ApiProjectsContro
 Route::get('projects/{id}', array('uses' => '\App\Api\ApiProjectsController@show'));
 Route::get('categories', array('uses' => '\App\Api\ApiCategoryController@index'));
 Route::get('categories/{id}', array('uses' => '\App\Api\ApiCategoryController@show'));
-Route::get('cv', array('uses' => '\App\Api\ApiCvController@index'));
-Route::get('career', array('uses' => '\App\Api\ApiCareerController@index'));
+Route::get('cv', array('uses' => '\App\Api\ApiCareerController@index'));
+Route::get('career', array('uses' => '\App\Api\ApiCvController@index'));
+Route::get('about', array('uses' => '\App\Api\ApiAboutController@index'));
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -29,6 +29,8 @@ Route::get('cv', 'CvController@index');
 
 Route::get('career', 'CareerController@index');
 
+Route::get('stack', 'StackController@index');
+
 Route::get('category', 'CategoryController@index');
 Route::post('category/add', 'CategoryController@add');
 

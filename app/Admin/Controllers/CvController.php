@@ -50,7 +50,7 @@ class CvController extends AdminController
         $grid->model()->orderBy('id', 'desc');
         $grid->column('id', __('ID'))->sortable();
         $grid->column('title')->sortable();
-        $grid->column('image')->image('http://svc.shtrm88.ru/uploads', 76, 76);
+        $grid->column('image')->image('http://svc.shtrm88.ru/uploads', 75, 75);
         return $grid;
     }
 

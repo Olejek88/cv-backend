@@ -19,6 +19,20 @@ class ApiProjectsController extends Controller
     }
 
     /**
+     * Вернуть список всех доступных проектов
+     * @param $id
+     * @return Response
+     */
+    public function tag($id)
+    {
+        $projects = Project::with(['tags', 'categories', 'photos'])
+            ->whereHas('tags', function ($q) use ($id) {
+                $q->where('tag.id', $id);
+            })->orderBy('created_at', 'desc')->get();
+        return response()->json($projects);
+    }
+
+    /**
      * Вернуть проект по ид
      * @param int $id
      * @return Response

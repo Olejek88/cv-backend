@@ -50,7 +50,7 @@ class AboutController extends AdminController
         $grid->model()->orderBy('id', 'desc');
         $grid->column('id', __('ID'))->sortable();
         $grid->column('position')->sortable();
-        $grid->column('image')->image('http://svc.shtrm88.ru/uploads', 76, 76);
+        $grid->column('image')->image(env("UPLOAD_SERVER", "http://svc.shtrm88.ru/uploads"), 76, 76);
         return $grid;
     }
 

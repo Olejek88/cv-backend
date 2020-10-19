@@ -22,6 +22,7 @@ Route::get('photos/{id}', array('uses' => '\App\Api\ApiPhotosController@show'));
 Route::get('projects/tag/{id}', array('uses' => '\App\Api\ApiProjectsController@tag'));
 Route::get('projects/category/{id}', array('uses' => '\App\Api\ApiProjectsController@category'));
 Route::get('projects/{id}', array('uses' => '\App\Api\ApiProjectsController@show'));
+Route::get('projects/limit/{limit}', array('uses' => '\App\Api\ApiProjectsController@index'));
 Route::get('categories', array('uses' => '\App\Api\ApiCategoryController@index'));
 Route::get('categories/{id}', array('uses' => '\App\Api\ApiCategoryController@show'));
 Route::get('cv', array('uses' => '\App\Api\ApiCareerController@index'));

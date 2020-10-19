@@ -10,11 +10,21 @@ class ApiProjectsController extends Controller
 {
     /**
      * Вернуть список всех доступных проектов
+     * @param $limit
      * @return Response
      */
-    public function index()
+    public function index($limit = 50)
     {
-        $projects = Project::with(['tags', 'categories', 'photos'])->orderBy('created_at', 'desc')->get();
+        if (isset($limit) && is_numeric($limit)) {
+            $projects = Project::with(['tags', 'categories', 'photos'])
+                ->limit($limit)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        } else {
+            $projects = Project::with(['tags', 'categories', 'photos'])
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
         return response()->json($projects);
     }
 

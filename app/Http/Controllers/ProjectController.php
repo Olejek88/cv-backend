@@ -61,7 +61,7 @@ class ProjectController extends AdminController
         $grid->column('usage');
         $grid->column('categories');
         //$grid->column('photos')->image();
-        $grid->column('photo')->image('http://svc.shtrm88.ru/uploads', 100, 100);
+        $grid->column('photo')->image(env("UPLOAD_SERVER", "http://svc.shtrm88.ru/uploads"), 100, 100);
         return $grid;
     }
 

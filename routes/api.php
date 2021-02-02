@@ -29,6 +29,8 @@ Route::get('cv', array('uses' => '\App\Api\ApiCareerController@index'));
 Route::get('career', array('uses' => '\App\Api\ApiCvController@index'));
 Route::get('about', array('uses' => '\App\Api\ApiAboutController@index'));
 Route::get('stack', array('uses' => '\App\Api\ApiStackController@index'));
+Route::get('spooks', array('uses' => '\App\Api\ApiSpooksController@index'));
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

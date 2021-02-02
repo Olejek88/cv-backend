@@ -14,6 +14,7 @@ class Photo extends Model
 {
     protected $table = 'photo';
     public $timestamps = false;
+    protected $fillable = ['path'];
 
     public function setPhotoAttribute($photos)
     {
